@@ -1,6 +1,6 @@
 ---
 title: Mohan Radhakrishnan
-natioanlity: Indian
+nationality: Indian
 photo: /img/4.jpg
 testimony: >-
   Lorem Ipsum is simply dummy text of the printing and typesetting industry.
