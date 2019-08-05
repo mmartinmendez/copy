@@ -1,7 +1,7 @@
 ---
 templateKey: blog-post
 title: Making sense of the SCAA’s new Flavor Wheel
-featuredimage: /img/flavor_wheel.jpg
+featuredimage: /img/wheel.jpeg
 featuredpost: false
 date: 2016-12-17T15:04:10.000Z
 author: Mithun Martin Mendez
