@@ -1,6 +1,6 @@
 ---
 title: Constanca da Silva
-natioanlity: Portuguese
+nationality: Portuguese
 photo: /img/51.jpg
 testimony: >-
   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
