@@ -1,103 +1,154 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { kebabCase } from 'lodash'
-import Helmet from 'react-helmet'
-import { graphql, Link } from 'gatsby'
-import Layout from '../components/Layout'
-import Content, { HTMLContent } from '../components/Content'
+import React from "react";
+import { graphql } from "gatsby";
+import Layout from "../components/Layout";
+import "./blog-post.sass";
+
+// Images
+import facebook from "../img/social/fb_black.svg";
+import twitter from "../img/social/tw_black.svg";
+import SplitTitle from "../components/SplitTitle";
+
+export const BlogPreview = ({ post }) => {
+  return <div className="blog__preview-container">
+    <p className="blog__preview-title">{post.frontmatter.title}</p>
+    <p className="blog__preview-excerpt">{post.excerpt} <a href={`http://localhost:8000${post.fields.slug}`}>Read more</a></p>
+    <div className="blog__detailed-author" style={{margin: "20px 0px"}}>
+      <img className="author-image inline" src={post.fields.author.frontmatter.photo.publicURL} alt={post.fields.author.frontmatter.title} />
+      <p className="inline text-bold keep-margin details-smaller">{post.fields.author.frontmatter.title}</p>
+      <p className="inline text-bold keep-margin details-smaller">{post.timeToRead} mins read</p>
+    </div>
+  </div>
+}
 
 export const BlogPostTemplate = ({
-  content,
-  contentComponent,
-  description,
-  tags,
+  id,
   title,
-  helmet,
+  tags,
+  description,
+  date,
+  image,
+  author,
+  time,
+  similar
 }) => {
-  const PostContent = contentComponent || Content
+  const twitterShare = `https://twitter.com/intent/tweet?url=#url&text=${title}&via=iscdelft&hashtags=${tags.join(",")}`;
 
+  const facebookShare = `http://www.facebook.com/sharer/sharer.php?u=#url&t=${title}`
   return (
-    <section className="section">
-      {helmet || ''}
-      <div className="container content">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
-              {title}
-            </h1>
-            <p>{description}</p>
-            <PostContent content={content} />
-            {tags && tags.length ? (
-              <div style={{ marginTop: `4rem` }}>
-                <h4>Tags</h4>
-                <ul className="taglist">
-                  {tags.map(tag => (
-                    <li key={tag + `tag`}>
-                      <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
+      <div className="container is-fluid">
+        <div className="spacer" />
+        <div className="blog__detailed-container">
+          <img src={image} alt={title} />
+          <p className="blog__detailed-title">{title}</p>
+          <div>
+            {tags &&
+              tags.map(tag => <div className="blog__detailed-tag">{tag}</div>)}
+          </div>
+          <div className="blog__detailed-meta">
+            <div className="blog__detailed-author">
+              <img
+                className="author-image inline"
+                src={author.frontmatter.photo.publicURL}
+                alt={author.frontmatter.title}
+              />
+              <p className="inline">{author.frontmatter.title}</p>
+            </div>
+            <p>{time} mins read</p>
+            <p>{date}</p>
+          </div>
+          <p className="blog__detailed-description">{description}</p>
+          <div className="blog__detailed-share">
+            <p>Share:</p>
+            <a class="twitter__share-button" target="__blank" href={twitterShare}>
+              <img src={twitter} alt="twitter" />
+            </a>
+            <a class="facebook__share-button" target="__blank" href={facebookShare}>
+              <img src={facebook} alt="facebook" />
+            </a>
+          </div>
+          <SplitTitle title="Similar Articles" />
+          <div className="blog__preview-wrapper">
+            {similar.slice(0, 3).map(post => <BlogPreview post={post} />)}
           </div>
         </div>
       </div>
-    </section>
-  )
-}
-
-BlogPostTemplate.propTypes = {
-  content: PropTypes.node.isRequired,
-  contentComponent: PropTypes.func,
-  description: PropTypes.string,
-  title: PropTypes.string,
-  helmet: PropTypes.object,
-}
+  );
+};
 
 const BlogPost = ({ data }) => {
-  const { markdownRemark: post } = data
-
   return (
     <Layout>
       <BlogPostTemplate
-        content={post.html}
-        contentComponent={HTMLContent}
-        description={post.frontmatter.description}
-        helmet={
-          <Helmet titleTemplate="%s | Blog">
-            <title>{`${post.frontmatter.title}`}</title>
-            <meta
-              name="description"
-              content={`${post.frontmatter.description}`}
-            />
-          </Helmet>
-        }
-        tags={post.frontmatter.tags}
-        title={post.frontmatter.title}
+        id={data.markdownRemark.id}
+        description={data.markdownRemark.internal.content}
+        title={data.markdownRemark.frontmatter.title}
+        image={data.markdownRemark.frontmatter.featuredimage.publicURL}
+        author={data.markdownRemark.fields.author}
+        tags={data.markdownRemark.frontmatter.tags}
+        date={data.markdownRemark.frontmatter.date}
+        time={data.markdownRemark.timeToRead}
+        similar={data.markdownRemark.fields.author.fields.posts}
       />
     </Layout>
-  )
-}
+  );
+};
 
-BlogPost.propTypes = {
-  data: PropTypes.shape({
-    markdownRemark: PropTypes.object,
-  }),
-}
-
-export default BlogPost
+export default BlogPost;
 
 export const pageQuery = graphql`
   query BlogPostByID($id: String!) {
     markdownRemark(id: { eq: $id }) {
       id
-      html
-      frontmatter {
-        date(formatString: "MMMM DD, YYYY")
-        title
+      internal {
+        content
         description
+        ignoreType
+        mediaType
+      }
+      fields {
+        slug
+      }
+      frontmatter {
         tags
+        date(formatString: "D MMMM, YYYY")
+        featuredimage {
+          publicURL
+        }
+        title
+      }
+      timeToRead
+      fields {
+        author {
+          fields {
+            posts {
+              id
+              timeToRead
+              excerpt(pruneLength: 200)
+              fields {
+                slug
+                author {
+                  frontmatter {
+                    title
+                    photo {
+                      publicURL
+                    }
+                  }
+                }
+              }
+              frontmatter {
+                title
+                date(formatString: "D MMMM, YYYY")
+              }
+            }
+          }
+          frontmatter {
+            title
+            photo {
+              publicURL
+            }
+          }
+        }
       }
     }
   }
-`
+`;

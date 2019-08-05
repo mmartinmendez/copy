@@ -33,17 +33,19 @@ exports.createPages = ({ actions, graphql }) => {
 
     posts.forEach(edge => {
       const id = edge.node.id
-      createPage({
-        path: edge.node.fields.slug,
-        tags: edge.node.frontmatter.tags,
-        component: path.resolve(
-          `src/templates/${String(edge.node.frontmatter.templateKey)}.js`
-        ),
-        // additional data can be passed via context
-        context: {
-          id,
-        },
-      })
+      if(edge.node.frontmatter.templateKey) {
+        createPage({
+          path: edge.node.fields.slug,
+          tags: edge.node.frontmatter.tags,
+          component: path.resolve(
+            `src/templates/${String(edge.node.frontmatter.templateKey)}.js`
+          ),
+          // additional data can be passed via context
+          context: {
+            id,
+          },
+        })
+      }
     })
 
     // Tag pages:
@@ -85,3 +87,46 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     })
   }
 }
+
+exports.sourceNodes = ({ actions, getNodes, getNode }) => {
+  const { createNodeField } = actions;
+
+  const postsOfAuthors = {};
+  // iterate thorugh all markdown nodes to link books to author
+  // and build author index
+  const markdownNodes = getNodes()
+    .filter(node => node.internal.type === "MarkdownRemark")
+    .forEach(node => {
+      if (node.frontmatter.author) {
+        const authorNode = getNodes().find(
+          node2 =>
+            node2.internal.type === "MarkdownRemark" &&
+            node2.frontmatter.title === node.frontmatter.author
+        );
+
+        if (authorNode) {
+          createNodeField({
+            node,
+            name: "author",
+            value: authorNode.id
+          });
+
+          // if it's first time for this author init empty array for his posts
+          if (!(authorNode.id in postsOfAuthors)) {
+            postsOfAuthors[authorNode.id] = [];
+          }
+          // add book to this author
+          postsOfAuthors[authorNode.id].push(node.id);
+        }
+      }
+    });
+
+  Object.entries(postsOfAuthors).forEach(([authorNodeId, postIds]) => {
+    console.log("Posts of authors", authorNodeId, postIds);
+    createNodeField({
+      node: getNode(authorNodeId),
+      name: "posts",
+      value: postIds
+    });
+  });
+};
