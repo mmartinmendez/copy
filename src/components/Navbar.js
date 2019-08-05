@@ -76,13 +76,13 @@ const Navbar = class extends React.Component {
               <Link activeStyle={{ color: 'rgba(111,137,228,1)' }} className="navbar-item" to="/community">
                 Community
               </Link>
-              <Link activeStyle={{ color: 'rgba(111,137,228,1)' }} className="navbar-item" to="/blog">
+              <Link activeStyle={{ color: 'rgba(111,137,228,1)' }} className="navbar-item" to="/events">
                 Events
               </Link>
               <Link activeStyle={{ color: 'rgba(111,137,228,1)' }} className="navbar-item" to="/blog">
                 Blog
               </Link>
-              <Link activeStyle={{ color: 'rgba(111,137,228,1)' }} className="navbar-item" to="/blog">
+              <Link activeStyle={{ color: 'rgba(111,137,228,1)' }} className="navbar-item" to="/contact">
                 Contact
               </Link>
             </div>

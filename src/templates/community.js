@@ -1,10 +1,15 @@
 import React from 'react'
 import Layout from '../components//Layout'
 
+import './community.sass'
+
 const Community = ({ data }) => (
     <Layout>
-        <p>{data.markdownRemark.frontmatter.title}</p>
-        <p>{data.markdownRemark.frontmatter.info}</p>
+        <div className="container contain-wide-text text-bold blog-description">
+          <div className="spacer-md" />
+          <p>{data.markdownRemark.frontmatter.title}</p>
+          <p style={{paddingBottom: "700px"}}>{data.markdownRemark.frontmatter.info}</p>
+        </div>
     </Layout>
 )
 

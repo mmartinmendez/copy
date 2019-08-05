@@ -9,7 +9,6 @@ ul,
 ol
   margin:  0
   padding: 0
-
 // Config vars
 // Kaldi logo brand color: #FD461E
 $kaldi-red: #D64000
@@ -20,11 +19,18 @@ $primary-invert: $kaldi-red-invert
 $body-color: #333
 $black: #2b2523
 
+a
+  color: $primary
+
 .text-bold
   font-weight: 600
 
 .keep-margin
   margin: 10px
+
+.contain-wide-text
+  max-width: 800px !important
+  padding: 24px
 
 .author-image
   height: 3em
@@ -35,7 +41,16 @@ $black: #2b2523
   display: inline-block
 
 .spacer
-    height: 80px
+  width: 100%
+  height: 120px
+
+.spacer-md
+  width: 100%
+  height: 160px
+
+.spacer-lg
+  width: 100%
+  height: 200px
 
 .navbar .navbar-menu
   box-shadow:none !important
@@ -221,4 +236,15 @@ $menu-label-color: $white-ter
       margin: 10px
     .footer-copyright
       bottom: 10px
+  .spacer
+    width: 100%
+    height: 80px
+
+  .spacer-md
+    width: 100%
+    height: 120px
+
+  .spacer-lg
+    width: 100%
+    height: 160px
 
