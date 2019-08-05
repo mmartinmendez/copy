@@ -1,15 +1,28 @@
-import React from 'react'
-// import Layout from '../../components/Layout'
+import React from "react";
+import Layout from "../../components/Layout";
 // import { graphql } from 'gatsby'
 
-const UsefulLinks = ({ data }) => (
-    <div>content</div>
-)
+class UsefulLinks extends React.Component {
+  render() {
+    console.log(this.props.data)
+    return <Layout></Layout>;
+  }
+}
 
-export default UsefulLinks
+export default UsefulLinks;
 
 // export const UsefullinksPageQuery = graphql`
-//     query UsefulLinksQuery {
-
+//   query UsefulLinksQuery {
+//     allMarkdownRemark(filter: { frontmatter: { findKey: { e: usefullinks } } }) {
+//       edges {
+//         node {
+//           frontmatter {
+//             title
+//             description
+//           }
+//           excerpt
+//         }
+//       }
 //     }
-// `
+//   }
+// `;
