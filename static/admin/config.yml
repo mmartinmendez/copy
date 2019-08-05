@@ -34,7 +34,7 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      # - {label: "Template Key", name: "templateKey", widget: "hidden", default: "event"}
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "event"}
       - {label: "URL", name: "title", widget: "string"}
       - {label: "Quick description", name: "qdescription", widget: "text"}
       - {label: "Information", name: "information", widget: "markdown"}
