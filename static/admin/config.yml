@@ -14,9 +14,9 @@ collections:
     slug: "{{slug}}"
     fields: 
       - {label: "Name", name: "title", widget: "string"}
-      - {label: "Nationality", name: "natioanlity", widget: "string"}
+      - {label: "Nationality", name: "natioanlity", widget: "string", required: false}
       - {label: "Photo", name: "photo", widget: "image", required: true}
-      - {label: "About me", name: "aboutme", widget: "text"}
+      - {label: "Testimony", name: "testimony", widget: "text", required: false}
 
   - name: "usefulLinks"
     label: "Useful links"
