@@ -1,6 +1,6 @@
 ---
 title: Mithun Martin Mendez
-natioanlity: Indian
+nationality: Indian
 photo: /img/58.jpg
 testimony: >-
   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
