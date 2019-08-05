@@ -1,14 +1,41 @@
 @import "~bulma/sass/utilities/initial-variables"
 
+html
+  min-width: 100vw
+
+html,
+body,
+ul,
+ol
+  margin:  0
+  padding: 0
+
 // Config vars
 // Kaldi logo brand color: #FD461E
 $kaldi-red: #D64000
 $kaldi-red-invert: #fff
 
-$primary: $kaldi-red
+$primary: rgba(111,137,228,1)
 $primary-invert: $kaldi-red-invert
 $body-color: #333
 $black: #2b2523
+
+.text-bold
+  font-weight: 600
+
+.keep-margin
+  margin: 10px
+
+.author-image
+  height: 3em
+  width: 3em
+  border-radius: 50%
+
+.inline
+  display: inline-block
+
+.spacer
+    height: 80px
 
 .navbar .navbar-menu
   box-shadow:none !important
@@ -71,6 +98,20 @@ $black: #2b2523
 .margin-top-0
   margin-top: 0 !important
 
+.navbar-cen
+  display: flex
+  flex-direction: row
+  align-items: center
+  justify-content: center
+  font-weight: 700
+
+.navbar > .container .navbar-menu,
+.container > .navbar .navbar-menu
+  margin: 0 !important
+
+.navbar-item
+  margin: 0 30px !important
+
 .navbar-item .icon
   color: $primary
 // Override for use of svg's from https://simpleicons.org/
@@ -78,11 +119,22 @@ $black: #2b2523
   width: 1.5rem
   height: 1.5rem
   fill: currentColor
-.navbar-brand .navbar-item.logo
+.navbar-brand .navbar-item
   padding: 0 1rem
 footer.footer
-  padding: 3rem 0rem 0rem
-  background-color: transparent
+  position: relative
+  background-color: $primary
+  display: flex
+  align-items: center
+  padding: 20px 20px
+  .footer-copyright
+    position: absolute
+    color: white
+    font-weight: 600
+  .footer-social
+    margin: auto
+    img
+      margin: 0px 20px
 
 //Menu overrides
 $menu-item-color: $white-ter
@@ -122,6 +174,25 @@ $menu-label-color: $white-ter
   flex-basis: 35%;
   margin: 0 1.5em 0 0;
 
+.split-container
+  width: 50%
+  position: relative
+  display: flex 
+  align-items: center
+  justify-content: center
+  .title-divider
+    width: 100%
+    height: 1px
+    background-color: black
+    margin: 30px
+  .split-title
+    font-weight: 900
+    font-size: 1.2em
+    position: absolute
+    padding: 10px 20px
+    background-color: white
+
+
 
 @import "~bulma"
 
@@ -129,12 +200,25 @@ $menu-label-color: $white-ter
 // responsiveness
 +tablet-only
   .blog-list-item .featured-thumbnail
-    flex-basis: 50%;
+    flex-basis: 50%
 
 +mobile
+  .split-container
+    width: 90%
+  .spacer
+    height: 10px
   .blog-list-item header
     display: block
   .blog-list-item .featured-thumbnail
     text-align: center;
     max-width: 70%;
     margin: 0 0 1em;
+  footer.footer
+    flex-direction: column
+    padding: 10px
+    height: 100px
+    .footer-social
+      margin: 10px
+    .footer-copyright
+      bottom: 10px
+
