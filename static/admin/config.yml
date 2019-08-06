@@ -70,7 +70,7 @@ collections:
           - {label: Title, name: title, widget: string}
           - {label: Heading, name: heading, widget: string}
           - {label: Daily Bible Reading, name: bibleReading, widget: text}
-          - {label: Song of the Week, name: sonfOfTheWeek, widget: string}
+          - {label: Song of the Week, name: songOfTheWeek, widget: string}
       - file: "src/pages/community/index.md"
         label: "Community"
         name: "community"
