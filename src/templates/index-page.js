@@ -61,7 +61,7 @@ const IndexPage = ({ data }) => {
           picture-in-picture" allowFullScreen></iframe>
         </Card>
       </div>
-      <div style={{display: "flex", justifyContent: "center"}}>
+      <div style={{display: "flex", justifyContent: "center", marginTop: "100px"}}>
         <SplitTitle title="Recent Articles" />
       </div>
       <BlogRoll />

@@ -11,11 +11,11 @@ collections:
     label: "Bloggers"
     folder: "src/pages/bloggers"
     create: true
-    slug: "{{slug}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields: 
       - {label: "Name", name: "title", widget: "string"}
       - {label: "Nationality", name: "nationality", widget: "string", required: false}
-      - {label: "Photo", name: "photo", widget: "image", required: true}
+      - {label: "Photo", name: "photo", widget: "image"}
       - {label: "Testimony", name: "testimony", widget: "text", required: false}
 
   - name: "usefulLinks"
@@ -35,9 +35,12 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "event"}
-      - {label: "URL", name: "title", widget: "string"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Venue", name: "venue", widget: "map", required: false}
       - {label: "Quick description", name: "qdescription", widget: "text"}
-      - {label: "Information", name: "information", widget: "markdown"}
+      - {label: "Information", name: "information", widget: "markdown", required: false}
+      - {label: "URL", name: "url", widget: "string", required: false}
   
   - name: "activities"
     label: "Activities"
@@ -47,6 +50,8 @@ collections:
     fields:
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "activity"}
       - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime", required: false}
+      - {label: "Venue", name: "venue", widget: "map", required: false}
       - {label: "Contect", name: "body", widget: "markdown"}
 
   - name: "blog"
@@ -67,7 +72,7 @@ collections:
         searchFields: ["title"]
         valueField: "title"
       - {label: "Body", name: "body", widget: "text"}
-      - {label: "Tags", name: "tags", widget: "list"}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
 
   - name: "pages"
     label: "Pages"
@@ -78,7 +83,6 @@ collections:
         fields:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "index-page"}
           - {label: Title, name: title, widget: string}
-          - {label: Heading, name: heading, widget: string}
           - {label: Daily Bible Reading, name: bibleReading, widget: text}
           - {label: Song of the Week, name: songOfTheWeek, widget: string}
       - file: "src/pages/community/index.md"
