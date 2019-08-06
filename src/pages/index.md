@@ -1,6 +1,6 @@
 ---
 templateKey: index-page
-title: ISC starter template
+title: International Student Church
 heading: Starts here
 bibleReading: >-
   My guilt has overwhelmed me like a burden too heavy to bear. In you, Lord, I
