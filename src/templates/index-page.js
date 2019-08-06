@@ -47,7 +47,10 @@ const IndexPage = ({ data }) => {
           <p>{frontmatter.bibleReading}</p>
         </Card>
         <Card title="Song of the week">
-          <div dangerouslySetInnerHTML={{__html: frontmatter.songOfTheWeek}} />
+        <iframe width="560" height="315"
+          src={frontmatter.songOfTheWeek} frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope;
+          picture-in-picture" allowfullscreen></iframe>
         </Card>
       </div>
     </Layout>
