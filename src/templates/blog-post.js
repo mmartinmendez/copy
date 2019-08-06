@@ -66,9 +66,11 @@ export const BlogPostTemplate = ({
               <img src={facebook} alt="facebook" />
             </a>
           </div>
-          <SplitTitle title="Similar Articles" />
-          <div className="blog__preview-wrapper">
-            {similar.slice(0, 3).map(post => <BlogPreview post={post} />)}
+          {similar.length > 1 && <SplitTitle title="Similar Articles" />}
+          <div className="blog__preview-wrapper container">
+            {similar.filter(post => {
+              return id !== post.id
+            }).slice(0, 3).map(post => <BlogPreview post={post} />)}
           </div>
         </div>
       </div>

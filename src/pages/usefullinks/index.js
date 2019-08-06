@@ -8,7 +8,7 @@ import "./usefullinks.sass";
 
 const LinkDisplay = ({ link }) => (
   <div className="link-container">
-    <a href={`https://${link.title}`} target="__blank" className="text-bold">
+    <a href={link.title.includes('https://') ? link.title : `https://${link.title}`} target="__blank" className="text-bold">
       {link.title}
     </a>
     <p className="text-bold">{link.description}</p>

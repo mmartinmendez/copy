@@ -3,8 +3,10 @@
 .landing-cover
   height: 100vh
   position: relative
-  &>svg
+  .landing-svg
     position: absolute
+    width: 100vw
+    height: 800px
     top: 75vh
     z-index: -1
 
@@ -16,11 +18,16 @@
     color: black
 
 .card-scroll
-  width: 100vw
+  max-width: 100vw
   overflow-x: auto
+  display: flex
+  justify-content: center
+  padding: 20px
+  &>div
+    display: inline-block
 
 .landing-card
-  height: 220px
+  height: 250px
   width: 350px
   background-color: white
   border-radius: 10px
@@ -37,3 +44,22 @@
     margin: 10px
   p 
     font-size: 0.9em
+
+.index-links
+  display: block
+  color: grey
+
++tablet-only
+  .card-scroll
+    justify-content: flex-start
+  
++mobile 
+  .card-scroll
+    justify-content: flex-start
+    
+  .landing-svg-mobile
+    width: 100vw
+    height: 300px
+    background-color: rgba(111,137,228,1)
+    position: absolute
+    bottom: -700px

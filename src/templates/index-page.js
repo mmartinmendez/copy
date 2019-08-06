@@ -1,8 +1,10 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 
+import BlogRoll from '../components/BlogRoll'
 import Layout from '../components/Layout'
-
+import SplitTitle from '../components/SplitTitle'
+import svgmorph from '../img/svgmorph.svg'
 import './index.sass'
 
 export const IndexPageTemplate = ({
@@ -27,9 +29,14 @@ const IndexPage = ({ data }) => {
   return (
     <Layout landing={true}>
       <section className="landing-cover">
-        <svg xmlns="http://www.w3.org/2000/svg" width="2013.346" height="691.917" viewBox="0 0 2013.346 691.917">
-          <path id="Path_1" data-name="Path 1" d="M0,770.891s403.475-59.583,770.824,126.385S1703.049,1133.257,1917.87,1133.1s0,320.623,0,320.623H0Z" transform="translate(0 -761.803)" fill="#0330cf" opacity="0.567"/>
-        </svg>
+        <div
+          className="landing-svg"
+          style={{
+            backgroundImage: `URL(${svgmorph})`,
+            backgroundRepeat: "no-repeat"
+          }} 
+        />
+        <div className="landing-svg-mobile" />
       </section>
       <section className="container contain-wide-text landing-general-info">
         <p>
@@ -43,16 +50,21 @@ const IndexPage = ({ data }) => {
         <Card title="Daily Bible Reading">
           <p>{frontmatter.bibleReading}</p>
         </Card>
-        <Card title="Daily Bible Reading">
-          <p>{frontmatter.bibleReading}</p>
+        <Card title="Useful links">
+          {data.allMarkdownRemark.edges.map(link => <a key={link.node.frontmatter.title} href={link.node.frontmatter.title.includes('https://') ? link.node.frontmatter.title : `https://${link.node.frontmatter.title}`} target="__blank" className="index-links">{link.node.frontmatter.title}</a>)}
+          <Link style={{paddingTop: "20px"}} className="link-button" to="/usefullinks">See more ...</Link>
         </Card>
         <Card title="Song of the week">
-        <iframe width="560" height="315"
-          src={frontmatter.songOfTheWeek} frameborder="0"
+        <iframe title="song of the week" width="560" height="315"
+          src={`https://www.youtube-nocookie.com/embed/${frontmatter.songOfTheWeek.split("?v=")[1]}`} frameBorder="0"
           allow="accelerometer; autoplay; encrypted-media; gyroscope;
-          picture-in-picture" allowfullscreen></iframe>
+          picture-in-picture" allowFullScreen></iframe>
         </Card>
       </div>
+      <div style={{display: "flex", justifyContent: "center"}}>
+        <SplitTitle title="Recent Articles" />
+      </div>
+      <BlogRoll />
     </Layout>
   )
 }
@@ -66,6 +78,17 @@ export const pageQuery = graphql`
         title
         bibleReading
         songOfTheWeek
+      }
+    }
+    allMarkdownRemark(
+      filter: { frontmatter: { findKey: { eq: "usefullinks" } } }, limit: 5
+    ) {
+      edges {
+        node {
+          frontmatter {
+            title
+          }
+        }
       }
     }
   }

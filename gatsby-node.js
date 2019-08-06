@@ -122,7 +122,6 @@ exports.sourceNodes = ({ actions, getNodes, getNode }) => {
     });
 
   Object.entries(postsOfAuthors).forEach(([authorNodeId, postIds]) => {
-    console.log("Posts of authors", authorNodeId, postIds);
     createNodeField({
       node: getNode(authorNodeId),
       name: "posts",

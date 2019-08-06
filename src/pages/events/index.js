@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { graphql } from 'gatsby'
 import Layout from '../../components/Layout'
 
 export default class EventIndexPage extends React.Component {

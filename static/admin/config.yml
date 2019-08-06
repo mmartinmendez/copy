@@ -38,6 +38,16 @@ collections:
       - {label: "URL", name: "title", widget: "string"}
       - {label: "Quick description", name: "qdescription", widget: "text"}
       - {label: "Information", name: "information", widget: "markdown"}
+  
+  - name: "activities"
+    label: "Activities"
+    folder: "src/pages/activities"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "activity"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Contect", name: "body", widget: "markdown"}
 
   - name: "blog"
     label: "Blog"

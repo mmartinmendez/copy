@@ -5,6 +5,6 @@ heading: Starts here
 bibleReading: >-
   My guilt has overwhelmed me like a burden too heavy to bear. In you, Lord, I
   put my hope; you, Lord my God, will give answer. (Psalms 38)
-sonfOfTheWeek: 'https://www.youtube.com/watch?v=wAm5xhi8Ams'
+songOfTheWeek: 'https://www.youtube.com/watch?v=wAm5xhi8Ams'
 ---
 
