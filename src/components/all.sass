@@ -19,8 +19,8 @@ $primary-invert: $kaldi-red-invert
 $body-color: #333
 $black: #2b2523
 
-a
-  color: $primary
+a.link-button
+  color: $primary !important
 
 .text-bold
   font-weight: 600
@@ -207,6 +207,75 @@ $menu-label-color: $white-ter
     padding: 10px 20px
     background-color: white
 
+.search-container
+  margin: 20px
+  border-bottom: 1px solid rgba(213,213,213,1)
+  height: 25px
+  max-width: 170px
+  .search-input
+    border: none
+    &:focus
+      outline: none
+    &::placeholder
+      font-size: 1.1em
+      font-weight: 600
+      color: rgba(213,213,213,1)
+      padding: 0px 20px
+  .search-button
+    border: none
+    padding: 0px 10px
+
+.center-children
+  display: flex
+  justify-content: center
+
+.article-roll
+    padding: 80px
+    &>div
+      width: 33%
+      display: inline-block
+      vertical-align: top
+      padding: 20px
+      .article-header
+        margin-bottom: 20px
+      .article-info
+        margin: 20px 0px 70px 0px
+        &>img, &>p 
+          display: inline-block
+          margin-right: 10px
+          vertical-align: middle
+
+.show-more
+  width: 100%
+  display: flex
+  justify-content: center
+  button
+    max-width: 200px
+    color: $primary
+    border: none
+    font-size: 1em
+    margin: 10px 0px 50px 0px
+    cursor: pointer
+    border-bottom: 2px solid $primary
+    &:focus
+      outline: none
+
+.side-text
+  position: absolute
+  transform: rotate(-90deg)
+  top: 60vh
+  left: calc(10% - 250px)
+  &>div:first-child
+    border-bottom: 3px solid black
+    width: 150px
+    padding: 0px
+  &>div
+    display: inline-block
+    vertical-align: middle
+    padding: 20px
+    &>p 
+      font-size: 1.5em
+      font-weight: 900
 
 
 @import "~bulma"
@@ -216,6 +285,21 @@ $menu-label-color: $white-ter
 +tablet-only
   .blog-list-item .featured-thumbnail
     flex-basis: 50%
+  .article-roll
+    padding: 24px
+    &>div
+      width: 50%
+  .side-text
+    transform: rotate(0deg)
+    top: 100px
+    left: -50px
+    &>div:first-child
+      border-bottom: 2px solid black
+
+    &>div
+      &>p 
+        font-size: 1.3em
+        font-weight: 800
 
 +mobile
   .split-container
@@ -247,4 +331,12 @@ $menu-label-color: $white-ter
   .spacer-lg
     width: 100%
     height: 160px
+  
+  .article-roll
+    padding: 24px
+    &>div
+      width: 100%
+      padding: 0px
 
+  .side-text
+    display: none

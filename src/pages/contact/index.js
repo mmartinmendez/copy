@@ -12,11 +12,11 @@ const Contact = () => (
       <div className="spacer-md" />
       <p style={{ margin: "20px" }}>
         If you have any questions contact us at{" "}
-        <a href="mailto:iscdelft@gmail.com">iscdelft@gmail.com</a>
+        <a className="link-button" href="mailto:iscdelft@gmail.com">iscdelft@gmail.com</a>
       </p>
       <p style={{ margin: "20px" }}>
         More information is also available in our{" "}
-        <a href="https://www.facebook.com/iscdelft" target="__blank">facebook page</a>.
+        <a className="link-button" href="https://www.facebook.com/iscdelft" target="__blank">facebook page</a>.
       </p>
 
       <div className="contact-get-there">

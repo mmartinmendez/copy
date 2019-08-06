@@ -1,27 +1,49 @@
 import React from "react";
 import Layout from "../../components/Layout";
-import { graphql } from 'gatsby'
+import { graphql } from "gatsby";
+import SplitTitle from "../../components/SplitTitle";
+import Search from '../../components/Search'
 
-import './usefullinks.sass'
+import "./usefullinks.sass";
 
 const LinkDisplay = ({ link }) => (
-    <div className="link-container">
-        <a href={`https://${link.title}`} target="__blank" className="text-bold">{link.title}</a>
-        <p className="text-bold">{link.description}</p>
-    </div>
-)
+  <div className="link-container">
+    <a href={`https://${link.title}`} target="__blank" className="text-bold">
+      {link.title}
+    </a>
+    <p className="text-bold">{link.description}</p>
+  </div>
+);
 
 class UsefulLinks extends React.Component {
+  state = {
+    search: ''
+  }
+
   render() {
-    const links = this.props.data.allMarkdownRemark.edges
+    const links = this.props.data.allMarkdownRemark.edges;
     return (
-        <Layout>
-            <div className="container contain-wide-text">
-                <div className="spacer-md" />
-                {links.map(link => <LinkDisplay link={link.node.frontmatter} />)}
-            </div>
-        </Layout>
-    )
+      <Layout>
+        <div
+          className="container contain-wide-text"
+          style={{ marginBottom: "400px" }}
+        >
+          <div className="spacer" />
+          <div style={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
+            <SplitTitle title="Useful links" />
+            <Search title="Search links" action={(term) => this.setState({ search: term })} />
+          </div>
+          {links.filter(link => {
+            if(this.state.search === '') {
+              return true
+            }
+            return link.node.frontmatter.title.includes(this.state.search) || link.node.frontmatter.description.includes(this.state.search)
+          }).map(link => (
+            <LinkDisplay link={link.node.frontmatter} />
+          ))}
+        </div>
+      </Layout>
+    );
   }
 }
 
