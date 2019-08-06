@@ -4,8 +4,6 @@ import { graphql } from "gatsby";
 import SplitTitle from "../../components/SplitTitle";
 import Search from '../../components/Search'
 
-import "./usefullinks.sass";
-
 const LinkDisplay = ({ link }) => (
   <div className="link-container">
     <a href={link.title.includes('https://') ? link.title : `https://${link.title}`} target="__blank" className="text-bold">

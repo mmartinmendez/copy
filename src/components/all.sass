@@ -283,6 +283,16 @@ $menu-label-color: $white-ter
       font-size: 1.5em
       font-weight: 900
 
+.link-container
+    display: flex
+    padding: 24px
+    &>a
+        color: grey
+        margin-right: 50px
+    &>p
+        display: inline-block
+        color: black
+
 
 @import "~bulma"
 
@@ -308,6 +318,8 @@ $menu-label-color: $white-ter
         font-weight: 800
 
 +mobile
+  .link-container
+    flex-direction: column
   .split-container
     width: 90%
   .spacer
