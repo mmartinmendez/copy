@@ -14,9 +14,9 @@ export const IndexPageTemplate = ({
 )
 
 const Card = ({ title, children }) => (
-  <div>
-    <p>{title}</p>
-    <div />
+  <div className="landing-card">
+    <p className="text-bold">{title}</p>
+    <div className="divider" />
     {children}
   </div>
 )
@@ -38,12 +38,18 @@ const IndexPage = ({ data }) => {
         <p>We gladly welcome you to ISC, to make the best of the days together in Delft! We are a group of happy people, mostly students, who love God and love people.</p>
 
         <p>Our purpose is to create a loving community that international students can call second home while being away from their first home. Through our Sunday services and various activities, we bring students together, celebrate diversity, and strive to create peace by being in peace with ourselves and the people around us.</p>
-        <div>
-          <Card title="Daily Bible Reading">
-            <p>{frontmatter.bibleReading}</p>
-          </Card>
-        </div>
       </section>
+      <div className="card-scroll">
+        <Card title="Daily Bible Reading">
+          <p>{frontmatter.bibleReading}</p>
+        </Card>
+        <Card title="Daily Bible Reading">
+          <p>{frontmatter.bibleReading}</p>
+        </Card>
+        <Card title="Song of the week">
+          <div dangerouslySetInnerHTML={{__html: frontmatter.songOfTheWeek}} />
+        </Card>
+      </div>
     </Layout>
   )
 }
