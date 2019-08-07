@@ -75,7 +75,7 @@ collections:
         collection: "bloggers"
         searchFields: ["title"]
         valueField: "title"
-      - {label: "Body", name: "body", widget: "text"}
+      - {label: "Body", name: "body", widget: "markdown"}
       - {label: "Tags", name: "tags", widget: "list", required: false}
 
   - name: "pages"
