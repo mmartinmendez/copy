@@ -37,7 +37,7 @@ collections:
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "event"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Date", name: "date", widget: "datetime"}
-      - {label: "Venue", name: "venue", widget: "map", required: false}
+      - {label: "Venue", name: "venue", widget: "string", required: false}
       - {label: "Quick description", name: "qdescription", widget: "text"}
       - {label: "Information", name: "information", widget: "markdown", required: false}
       - {label: "URL", name: "url", widget: "string", required: false}
@@ -50,9 +50,12 @@ collections:
     fields:
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "activity"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Date", name: "date", widget: "datetime", required: false}
-      - {label: "Venue", name: "venue", widget: "map", required: false}
-      - {label: "Contect", name: "body", widget: "markdown"}
+      - {label: "Day", name: "day", widget: "string"}
+      - {label: "Hour", name: "hour", widget: "string", required: false}
+      - {label: "Minute", name: "minute", widget: "string", required: false}
+      - {label: "Venue", name: "venue", widget: "string", required: false}
+      - {label: "Quick description", name: "qdescription", widget: "text"}
+      - {label: "Contect", name: "body", widget: "markdown", required: false}
 
   - name: "blog"
     label: "Blog"
