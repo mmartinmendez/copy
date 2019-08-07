@@ -36,7 +36,9 @@ collections:
     fields:
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "event"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Date", name: "date", widget: "date"}
+      - {label: "Start time (HH:mm)", name: "starttime", widget: "string", required: false}
+      - {label: "End time (HH:mm)", name: "endtime", widget: "string", required: false}
       - {label: "Venue", name: "venue", widget: "string", required: false}
       - {label: "Quick description", name: "qdescription", widget: "text"}
       - {label: "Information", name: "information", widget: "markdown", required: false}
@@ -46,13 +48,12 @@ collections:
     label: "Activities"
     folder: "src/pages/activities"
     create: true
-    slug: "{{slug}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "activity"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Day", name: "day", widget: "string"}
-      - {label: "Hour", name: "hour", widget: "string", required: false}
-      - {label: "Minute", name: "minute", widget: "string", required: false}
+      - {label: "Time (HH:mm)", name: "time", widget: "string", required: false}
       - {label: "Venue", name: "venue", widget: "string", required: false}
       - {label: "Quick description", name: "qdescription", widget: "text"}
       - {label: "Contect", name: "body", widget: "markdown", required: false}
